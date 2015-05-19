@@ -1,14 +1,30 @@
 /* Exercise 2: Color picker */
- $(document).on('keyup keydown keypress', '#color', function() {
+$(document).on('keyup keydown keypress', '#color', function() {
 
-    setPreviewColor($("input").val());
- });
+  color = setPreviewColor($("input").val());
+});
+
+$(document).on("click", "button#add-to-favorite", function() {
+
+  color = $("input").val();
+
+  addBox(color);
+});
 
 function setPreviewColor(color) {
 
-    $(".preview").css("background-color",color);
+  var preview = $(".preview");
 
-    var rgb = $(".preview").css("background-color");
+  preview.css("background-color",color);
 
-    $(".color-code").text(rgb);
+  var rgb = preview.css("background-color");
+
+  $(".color-code").text(rgb);
+}
+
+function addBox(color) {
+
+  square = "<div class='item' style='background-color: " + color + ";'></div>";
+
+  $("div#colors").prepend(square);
 }

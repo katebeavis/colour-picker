@@ -1,5 +1,5 @@
 /* Exercise 2: Color picker */
-var colors = ["22ac5e", "d68236", "58ACFA", "58D3F7", "BF00FF", "yellow", "pink", "indigo", "blue", "turquoise" ];
+var colors = ["22ac5e", "d68236", "58ACFA", "58D3F7", "BF00FF", "yellow", "pink", "indigo", "blue", "turquoise", "silver", "gold" ];
 
 function setPreviewColor(color) {
   $(".preview").css("background-color", color);
@@ -16,7 +16,7 @@ $(document).ready(function() {
   $preview.css("background-color", colors[randomPosition]);
 
   $(document).on('keyup keydown keypress', '#color', function() {
-    color = setPreviewColor($("input").val());
+    setPreviewColor($("input").val());
   });
 
   $(document).on("click", "button#add-to-favorite", function() {

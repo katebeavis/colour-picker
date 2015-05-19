@@ -35,6 +35,20 @@ $(document).ready(function(){
     color = $("input").val();
 
     addBox(color);
+
+    $("input").val("").focus();
+  });
+
+  $(document).on('mouseenter', "#colors .item",  function(){
+
+    previewColour = $preview.css("background-color");
+
+    $preview.css("background-color", $(this).css("background-color"));
+
+  }).on('mouseleave', "#colors .item", function() {
+
+    $preview.css("background-color",previewColour);
+
   });
 });
 
@@ -43,7 +57,6 @@ function addBox(color) {
   if (boxNumber() === false) {
 
     removeBox();
-
   }
 
     square = "<div class='item' style='background-color: " + color + ";'></div>";
@@ -69,9 +82,9 @@ function boxNumber() {
 
 function removeBox() {
 
-  var lastBox = $("#colors .item:last-child")
+  var lastBox = $("#colors .item:last-child");
 
-  lastBox.remove()
+  lastBox.remove();
 }
 
 var colors = [ "22ac5e", "d68236", "58ACFA", "58D3F7", "BF00FF", "yellow", "pink", "indigo", "blue", "turquoise" ];

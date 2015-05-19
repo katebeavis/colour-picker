@@ -1,16 +1,4 @@
 /* Exercise 2: Color picker */
-$(document).on('keyup keydown keypress', '#color', function() {
-
-  color = setPreviewColor($("input").val());
-});
-
-$(document).on("click", "button#add-to-favorite", function() {
-
-  color = $("input").val();
-
-  addBox(color);
-});
-
 function setPreviewColor(color) {
 
   var preview = $(".preview");
@@ -22,9 +10,73 @@ function setPreviewColor(color) {
   $(".color-code").text(rgb);
 }
 
+$(document).ready(function(){
+
+  $.each(colors, function(index, element) {
+
+    addBox(element);
+
+  });
+
+    var $preview = $(".preview");
+
+    var randomPosition = Math.floor( Math.random() * colors.length );
+
+    $preview.css("background-color",colors[randomPosition]);
+
+  $(document).on('keyup keydown keypress', '#color', function() {
+
+    color = setPreviewColor($("input").val());
+
+  });
+
+  $(document).on("click", "button#add-to-favorite", function() {
+
+    color = $("input").val();
+
+    addBox(color);
+  });
+});
+
 function addBox(color) {
 
-  square = "<div class='item' style='background-color: " + color + ";'></div>";
+  if (boxNumber() === false) {
 
-  $("div#colors").prepend(square);
+    removeBox();
+
+  }
+
+    square = "<div class='item' style='background-color: " + color + ";'></div>";
+
+    $("div#colors").prepend(square);
+
 }
+
+function boxNumber() {
+
+  favCount = $("#colors .item").length;
+
+  if (favCount < 16) {
+
+    return true;
+
+  } else {
+
+    return false;
+  }
+
+}
+
+function removeBox() {
+
+  var lastBox = $("#colors .item:last-child")
+
+  lastBox.remove()
+}
+
+var colors = [ "22ac5e", "d68236", "58ACFA", "58D3F7", "BF00FF", "yellow", "pink", "indigo", "blue", "turquoise" ];
+
+
+
+
+

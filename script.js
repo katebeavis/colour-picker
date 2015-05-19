@@ -1,13 +1,9 @@
 /* Exercise 2: Color picker */
 function setPreviewColor(color) {
 
-  var preview = $(".preview");
+  $(".preview").css("background-color",color);
 
-  preview.css("background-color",color);
-
-  var rgb = preview.css("background-color");
-
-  $(".color-code").text(rgb);
+  $(".color-code").text($(".preview").css("background-color"));
 }
 
 $(document).ready(function(){
@@ -43,7 +39,7 @@ $(document).ready(function(){
 
     previewColour = $preview.css("background-color");
 
-    $preview.css("background-color", $(this).css("background-color"));
+    setPreviewColor($(this).css("background-color"));
 
   }).on('mouseleave', "#colors .item", function() {
 
